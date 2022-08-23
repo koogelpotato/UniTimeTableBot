@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32407.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniTimeTableBot", "UniTimeTableBot\UniTimeTableBot.csproj", "{9C5A3346-F3CB-41D3-9F97-3D1D07F206C0}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9C5A3346-F3CB-41D3-9F97-3D1D07F206C0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9C5A3346-F3CB-41D3-9F97-3D1D07F206C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9C5A3346-F3CB-41D3-9F97-3D1D07F206C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9C5A3346-F3CB-41D3-9F97-3D1D07F206C0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {131D05C9-BA29-4629-B3D9-147C91D8477A}
+	EndGlobalSection
+EndGlobal
