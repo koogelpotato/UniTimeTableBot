@@ -8,7 +8,7 @@ using Telegram.Bot;
 using Microsoft.Extensions.Logging;
 namespace UniTimeTableBot
 {
-    public class UpdateHandler
+    public class UpdateHandler : IUpdateHandler
     {
         private readonly ITelegramBotClient _botClient;
         private readonly ILogger _logger;
