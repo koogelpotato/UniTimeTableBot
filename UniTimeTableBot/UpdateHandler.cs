@@ -5,7 +5,9 @@ using Telegram.Bot.Types.InlineQueryResults;
 using Telegram.Bot.Types.InputFiles;
 using Telegram.Bot.Types.ReplyMarkups;
 using Telegram.Bot;
+using Telegram.Bot.Polling;
 using Microsoft.Extensions.Logging;
+using HtmlAgilityPack;
 namespace UniTimeTableBot
 {
     public class UpdateHandler : IUpdateHandler
@@ -214,6 +216,19 @@ namespace UniTimeTableBot
         {
             _logger.LogInformation("Unknown update type:{UpdateType}", update.Type);
             return Task.CompletedTask;
+        }
+        
+
+        public async Task HandlePollingErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
+        {
+            var ErrorMessage = exception switch
+            {
+                ApiRequestException apiRequestException => $"Telegram API error\n[{apiRequestException.ErrorCode}]\n{apiRequestException.Message}",
+                _ => exception.ToString()
+            };
+            _logger.LogInformation("HandleError: {ErrorMessage}", ErrorMessage);
+            if (exception is RequestException)
+                await Task.Delay(TimeSpan.FromSeconds(2), cancellationToken);
         }
     }
 }
