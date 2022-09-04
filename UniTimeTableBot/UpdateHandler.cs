@@ -8,6 +8,7 @@ using Telegram.Bot;
 using Telegram.Bot.Polling;
 using Microsoft.Extensions.Logging;
 using HtmlAgilityPack;
+using System.Xml;
 namespace UniTimeTableBot
 {
     public class UpdateHandler : IUpdateHandler
@@ -64,13 +65,14 @@ namespace UniTimeTableBot
         }
         static async Task<Message> SendInlineKeyboard(ITelegramBotClient botClient, Message message, CancellationToken cancellationToken)
         {
+            
             await botClient.SendChatActionAsync(
                 chatId: message.Chat.Id,
                 chatAction: ChatAction.Typing,
                 cancellationToken: cancellationToken);
 
             await Task.Delay(500, cancellationToken);
-
+            
             InlineKeyboardMarkup inlineKeyboard = new(
                 new[]
                 {
@@ -90,6 +92,8 @@ namespace UniTimeTableBot
                 text: "Введите номер группы", 
                 replyMarkup: inlineKeyboard,
                 cancellationToken: cancellationToken);
+             
+
         }
         static async Task<Message> SendReplyKeyboard(ITelegramBotClient botClient, Message message, CancellationToken cancellationToken)
         {
@@ -105,7 +109,7 @@ namespace UniTimeTableBot
 
             return await botClient.SendTextMessageAsync(
                 chatId: message.Chat.Id,
-                text: "Choose",
+                text: "Введите номер группы",
                 replyMarkup: replyKeyboardMarkup,
                 cancellationToken:cancellationToken);
         }
@@ -230,5 +234,7 @@ namespace UniTimeTableBot
             if (exception is RequestException)
                 await Task.Delay(TimeSpan.FromSeconds(2), cancellationToken);
         }
+        
+        
     }
 }
