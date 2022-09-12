@@ -54,9 +54,12 @@ namespace UniTimeTableBot
                 "/inline_keyboard" => SendInlineKeyboard(_botClient, message, cancellationToken),
                 "/keyboard" => SendReplyKeyboard(_botClient, message, cancellationToken),
                 "/remove" => RemoveKeyboard(_botClient, message, cancellationToken),
-                "/photo" => SendFile(_botClient, message, cancellationToken),
+                "/god" => SendFile(_botClient, message, cancellationToken),
                 "/request" => RequestContactAndLocation(_botClient, message, cancellationToken),
                 "/inline_mode" => StartInlineQuery(_botClient, message, cancellationToken),
+                "/return_pairs" => ReturnPairs(_botClient, message, cancellationToken),
+                
+
                 _ => Usage(_botClient, message, cancellationToken)
             };
             Message sentMessage = await action;
@@ -100,8 +103,8 @@ namespace UniTimeTableBot
             ReplyKeyboardMarkup replyKeyboardMarkup = new(
                 new[]
                 {
-                    new KeyboardButton[]{"1.1","1.2"},
-                    new KeyboardButton[]{"2.1","2.2"},
+                    new KeyboardButton[]{ "211", "212"},
+                    new KeyboardButton[]{ "213__engl_", "214__engl_","215__engl_"},
                 })
             {
                 ResizeKeyboard = true
@@ -127,7 +130,7 @@ namespace UniTimeTableBot
                 message.Chat.Id,
                 ChatAction.UploadPhoto,
                 cancellationToken: cancellationToken);
-            const string filePath = @"Pictures/834.png";
+            const string filePath = @"Photo/billy.png";
             await using FileStream fileStream = new(filePath, FileMode.Open, FileAccess.Read, FileShare.Read);
             var fileName = filePath.Split(Path.DirectorySeparatorChar).Last();
             return await botClient.SendPhotoAsync(
@@ -156,9 +159,10 @@ namespace UniTimeTableBot
                                  "/inline_keyboard - send inline kayboard\n" +
                                  "/keyboard  - send custom keyboard\n" +
                                  "/remove - remove custom keyboard\n" +
-                                 "/photo - send a photo\n" +
+                                 "/god - send a photo\n" +
                                  "/request - request location or contact\n" +
-                                 "/inline_mode - send keyboard with Inline query";
+                                 "/inline_mode - send keyboard with Inline query\n" +
+                                 "/return_pairs - return today's pairs";
             return await botClient.SendTextMessageAsync(
                 chatId:message.Chat.Id,
                 text: usage,
@@ -234,7 +238,18 @@ namespace UniTimeTableBot
             if (exception is RequestException)
                 await Task.Delay(TimeSpan.FromSeconds(2), cancellationToken);
         }
-        
-        
+        public async Task<Message> ReturnPairs(ITelegramBotClient botClient, Message message, CancellationToken cancellationToken, string groupNumber)
+        {
+            HtmlAgilityPackBase puller = new HtmlAgilityPackBase(_logger);
+            string pairMessage = "Failed Request";
+            
+            
+
+            return await botClient.SendTextMessageAsync(
+                chatId: message.Chat.Id,
+                text: puller.Scrape(groupNumber).ToString(),
+                replyMarkup: new ReplyKeyboardRemove(),
+                cancellationToken: cancellationToken);
+        }
     }
 }
