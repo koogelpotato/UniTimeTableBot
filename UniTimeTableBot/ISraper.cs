@@ -2,6 +2,6 @@
 {
     internal interface ISraper
     {
-        List<string> Scrape(string groupNumber);
+        string Scrape(string groupNumber);
     }
 }

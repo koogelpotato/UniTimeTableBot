@@ -9,6 +9,8 @@ using Telegram.Bot.Polling;
 using Microsoft.Extensions.Logging;
 using HtmlAgilityPack;
 using System.Xml;
+using System.Linq;
+
 namespace UniTimeTableBot
 {
     public class UpdateHandler : IUpdateHandler
@@ -57,42 +59,42 @@ namespace UniTimeTableBot
                 "/god" => SendFile(_botClient, message, cancellationToken),
                 "/request" => RequestContactAndLocation(_botClient, message, cancellationToken),
                 "/inline_mode" => StartInlineQuery(_botClient, message, cancellationToken),
-                "/return_pairs" => ReturnPairs(_botClient, message, cancellationToken),
                 
+
 
                 _ => Usage(_botClient, message, cancellationToken)
             };
             Message sentMessage = await action;
             _logger.LogInformation("The message was sent with id:{SentMessageId}", sentMessage.MessageId);
-            
+
         }
-        static async Task<Message> SendInlineKeyboard(ITelegramBotClient botClient, Message message, CancellationToken cancellationToken)
+        private async Task<Message> SendInlineKeyboard(ITelegramBotClient botClient, Message message, CancellationToken cancellationToken)
         {
-            
+            HtmlAgilityPackClass puller = new HtmlAgilityPackClass(_logger);
+
             await botClient.SendChatActionAsync(
                 chatId: message.Chat.Id,
                 chatAction: ChatAction.Typing,
                 cancellationToken: cancellationToken);
-
-            await Task.Delay(500, cancellationToken);
             
+            await Task.Delay(500, cancellationToken);
             InlineKeyboardMarkup inlineKeyboard = new(
                 new[]
                 {
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("1.1","11"),
-                        InlineKeyboardButton.WithCallbackData("1.2","12"),
+                        InlineKeyboardButton.WithCallbackData("1","1"),
+                        InlineKeyboardButton.WithCallbackData("2","2"),
                     },
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("2.1","21"),
-                        InlineKeyboardButton.WithCallbackData("2.2","22"),
+                        InlineKeyboardButton.WithCallbackData("3","3"),
+                        InlineKeyboardButton.WithCallbackData("4","4"),
                     },
                 });
             return await botClient.SendTextMessageAsync(
                 chatId: message.Chat.Id,
-                text: "Введите номер группы", 
+                text: "Введите курс", 
                 replyMarkup: inlineKeyboard,
                 cancellationToken: cancellationToken);
              
@@ -183,15 +185,14 @@ namespace UniTimeTableBot
         private async Task BotOnCallbackQueryReceived(CallbackQuery callbackQuery, CancellationToken cancellationToken)
         {
             _logger.LogInformation("Received inline kayboard callback from:{CallbackQueryId}", callbackQuery.Id);
+            _logger.LogCritical("Received inline kayboard callback from:{CallbackQueryData}", callbackQuery.Data);
+            CallbackQueryHandler handler = new CallbackQueryHandler(); 
             await _botClient.AnswerCallbackQueryAsync(
                 callbackQueryId: callbackQuery.Id,
                 text: $"Received {callbackQuery.Data}",
                 cancellationToken: cancellationToken);
 
-            await _botClient.SendTextMessageAsync(
-                chatId: callbackQuery.Message!.Chat.Id,
-                text: $"Received{callbackQuery.Data}",
-                cancellationToken: cancellationToken);
+            
 
         }
         #region InlineMode
@@ -225,7 +226,7 @@ namespace UniTimeTableBot
             _logger.LogInformation("Unknown update type:{UpdateType}", update.Type);
             return Task.CompletedTask;
         }
-        
+
 
         public async Task HandlePollingErrorAsync(ITelegramBotClient botClient, Exception exception, CancellationToken cancellationToken)
         {
@@ -237,19 +238,6 @@ namespace UniTimeTableBot
             _logger.LogInformation("HandleError: {ErrorMessage}", ErrorMessage);
             if (exception is RequestException)
                 await Task.Delay(TimeSpan.FromSeconds(2), cancellationToken);
-        }
-        public async Task<Message> ReturnPairs(ITelegramBotClient botClient, Message message, CancellationToken cancellationToken, string groupNumber)
-        {
-            HtmlAgilityPackBase puller = new HtmlAgilityPackBase(_logger);
-            string pairMessage = "Failed Request";
-            
-            
-
-            return await botClient.SendTextMessageAsync(
-                chatId: message.Chat.Id,
-                text: puller.Scrape(groupNumber).ToString(),
-                replyMarkup: new ReplyKeyboardRemove(),
-                cancellationToken: cancellationToken);
         }
     }
 }
