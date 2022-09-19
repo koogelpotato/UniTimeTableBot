@@ -9,7 +9,7 @@ namespace UniTimeTableBot
     public abstract class AbstractQueryHandler : IHandler
     {
         private IHandler? _nextHandler;
-        public string Handle(string callBackQuery)
+        public  virtual string Handle(string callBackQuery)
         {
             if(this._nextHandler != null)
             {
@@ -21,7 +21,7 @@ namespace UniTimeTableBot
             }
         }
 
-        public virtual IHandler SetNext(IHandler handler)
+        public IHandler SetNext(IHandler handler)
         {
             this._nextHandler = handler;
             return handler;

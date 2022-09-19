@@ -59,7 +59,6 @@ namespace UniTimeTableBot
                 "/god" => SendFile(_botClient, message, cancellationToken),
                 "/request" => RequestContactAndLocation(_botClient, message, cancellationToken),
                 "/inline_mode" => StartInlineQuery(_botClient, message, cancellationToken),
-                
 
 
                 _ => Usage(_botClient, message, cancellationToken)
@@ -83,18 +82,151 @@ namespace UniTimeTableBot
                 {
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("1","1"),
-                        InlineKeyboardButton.WithCallbackData("2","2"),
+                        InlineKeyboardButton.WithCallbackData("211","211"),
+                        InlineKeyboardButton.WithCallbackData("212","212"),
+                        InlineKeyboardButton.WithCallbackData("213","213__engl_"),
+                        InlineKeyboardButton.WithCallbackData("214","214__engl_"),
+                        InlineKeyboardButton.WithCallbackData("215","215__engl_"),
                     },
                     new[]
                     {
-                        InlineKeyboardButton.WithCallbackData("3","3"),
-                        InlineKeyboardButton.WithCallbackData("4","4"),
+                        InlineKeyboardButton.WithCallbackData("1211","1211_z_o"),
+                        InlineKeyboardButton.WithCallbackData("1212","1212_z_o"),
+                    },
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("011","011"),
+                        InlineKeyboardButton.WithCallbackData("012","012"),
+                        InlineKeyboardButton.WithCallbackData("013","013__engl_"),
+                        InlineKeyboardButton.WithCallbackData("014","014__engl_"),
+                        InlineKeyboardButton.WithCallbackData("015","015__engl_"),
+                    },
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("3011","3011_ba"),
+                        
+                    },
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("911","911"),
+                        InlineKeyboardButton.WithCallbackData("912","912"),
+                        InlineKeyboardButton.WithCallbackData("913","913__engl_"),
+                        InlineKeyboardButton.WithCallbackData("914","914__engl_"),
+                        InlineKeyboardButton.WithCallbackData("915","915__engl_"),
+                    },
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("3911","3911_ba"),
+                    },
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("221","221"),
+                        InlineKeyboardButton.WithCallbackData("222","222"),
+                        InlineKeyboardButton.WithCallbackData("223","223__engl_"),
+                        InlineKeyboardButton.WithCallbackData("224","224__engl_"),
+                        InlineKeyboardButton.WithCallbackData("225","225__engl_"),
+                    },
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("1221","1221_z_o"),
+                    },
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("121","121"),
+                        InlineKeyboardButton.WithCallbackData("122","122"),
+                        InlineKeyboardButton.WithCallbackData("123","123__engl_"),
+                    },
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("021","021"),
+                        InlineKeyboardButton.WithCallbackData("022","022"),
+                        InlineKeyboardButton.WithCallbackData("023","023__engl_"),
+                    },
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("921","921"),
+                        InlineKeyboardButton.WithCallbackData("922","922"),
+                    },
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("231","231"),
+                        InlineKeyboardButton.WithCallbackData("232","232"),
+                        InlineKeyboardButton.WithCallbackData("233","233__engl_"),
+                        InlineKeyboardButton.WithCallbackData("234","234__engl_"),
+                    },
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("1231","1231_z_o"),
+                    },
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("131","131"),
+                        InlineKeyboardButton.WithCallbackData("132","132"),
+                        InlineKeyboardButton.WithCallbackData("133","133__engl_"),
+                    },
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("031","031_ek"),
+                        InlineKeyboardButton.WithCallbackData("032","032_rd"),
+                        InlineKeyboardButton.WithCallbackData("033","033__engl_"),
+                    },
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("931","931_ek"),
+                        InlineKeyboardButton.WithCallbackData("932","932_rd"),
+                        InlineKeyboardButton.WithCallbackData("933","933__engl_"),
+                    },
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("101","101"),
+                        InlineKeyboardButton.WithCallbackData("102","102"),
+                    },
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("001","001_fin"),
+                        InlineKeyboardButton.WithCallbackData("002","002_sa"),
+                        InlineKeyboardButton.WithCallbackData("901","901_fin"),
+                        InlineKeyboardButton.WithCallbackData("902","902_sa"),
+                    },
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("251","251"),
+                        InlineKeyboardButton.WithCallbackData("252","252"),
+                        InlineKeyboardButton.WithCallbackData("253","253__engl_"),
+                        InlineKeyboardButton.WithCallbackData("254","254__engl_"),
+                    },
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("1251","1251"),
+                    },
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("251","251"),
+                        InlineKeyboardButton.WithCallbackData("252","252"),
+                        InlineKeyboardButton.WithCallbackData("253","253__engl_"),
+                        InlineKeyboardButton.WithCallbackData("254","254__engl_"),
+                    },
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("151","151"),
+                        InlineKeyboardButton.WithCallbackData("152","152"),
+                        InlineKeyboardButton.WithCallbackData("153","153__engl_"),
+                        InlineKeyboardButton.WithCallbackData("154","154__engl_"),
+                    },
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("051","051"),
+                        InlineKeyboardButton.WithCallbackData("052","052"),
+                    },
+                    new[]
+                    {
+                        InlineKeyboardButton.WithCallbackData("951","951"),
+                        InlineKeyboardButton.WithCallbackData("952","952"),
                     },
                 });
             return await botClient.SendTextMessageAsync(
                 chatId: message.Chat.Id,
-                text: "Введите курс", 
+                text: "Введите номер группы", 
                 replyMarkup: inlineKeyboard,
                 cancellationToken: cancellationToken);
              
@@ -186,13 +318,16 @@ namespace UniTimeTableBot
         {
             _logger.LogInformation("Received inline kayboard callback from:{CallbackQueryId}", callbackQuery.Id);
             _logger.LogCritical("Received inline kayboard callback from:{CallbackQueryData}", callbackQuery.Data);
-            CallbackQueryHandler handler = new CallbackQueryHandler(); 
+            HtmlAgilityPackClass htmlAgilityPack = new HtmlAgilityPackClass(_logger);
             await _botClient.AnswerCallbackQueryAsync(
                 callbackQueryId: callbackQuery.Id,
                 text: $"Received {callbackQuery.Data}",
                 cancellationToken: cancellationToken);
+            await _botClient.SendTextMessageAsync(
+            chatId: callbackQuery.Message!.Chat.Id,
+            text: $"Пары на неделю: {htmlAgilityPack.Scrape(callbackQuery.Data)}",
+            cancellationToken: cancellationToken);
 
-            
 
         }
         #region InlineMode
@@ -203,7 +338,8 @@ namespace UniTimeTableBot
                 new InlineQueryResultArticle(
                     id:"1",
                     title:"TgBots",
-                    inputMessageContent: new InputTextMessageContent("hello"))
+                    inputMessageContent: new InputTextMessageContent("hello")),
+                
             };
             await _botClient.AnswerInlineQueryAsync(
                 inlineQueryId: inlineQuery.Id,
@@ -213,7 +349,7 @@ namespace UniTimeTableBot
         }
         private async Task BotOnChoosenInlineResultReceived(ChosenInlineResult chosenInlineResult, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Received inline result: {ChosenInlineResultId}", chosenInlineResult.ResultId);
+            _logger.LogCritical("Received inline result: {ChosenInlineResultId}", chosenInlineResult.ResultId);
 
             await _botClient.SendTextMessageAsync(
                 chatId: chosenInlineResult.From.Id,
@@ -239,5 +375,6 @@ namespace UniTimeTableBot
             if (exception is RequestException)
                 await Task.Delay(TimeSpan.FromSeconds(2), cancellationToken);
         }
+
     }
 }
