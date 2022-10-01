@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace UniTimeTableBot
 {
-    public abstract class AbstractQueryHandler : IHandler
+    public class AbstractQueryHandler : IHandler
     {
-        private IHandler? _nextHandler;
-        public  virtual string Handle(string callBackQuery)
+        private IHandler _nextHandler;
+        public IHandler SetNext(IHandler handler)
+        {
+            this._nextHandler = handler;
+            return handler;
+        }
+        public virtual QueryRequest Handle(QueryRequest callBackQuery)
         {
             if(this._nextHandler != null)
             {
@@ -21,10 +26,6 @@ namespace UniTimeTableBot
             }
         }
 
-        public IHandler SetNext(IHandler handler)
-        {
-            this._nextHandler = handler;
-            return handler;
-        }
+        
     }
 }

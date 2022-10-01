@@ -35,5 +35,5 @@ await host.RunAsync();
 public class BotConfiguration
 {
     public static readonly string Configuration = "BotConfiguration";
-    public string BotToken { get; set; } = "5358505929:AAEy4tXCsSxt7GAOPlAJ2fkuWLzVGm1Ka_Ag";
+    public string BotToken { get; set; } = "5358505929:AAEy4tXCsSxt7GAOPlAJ2fkuWkVGm1Ka_Ag";
 }

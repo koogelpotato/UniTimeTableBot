@@ -316,16 +316,10 @@ namespace UniTimeTableBot
         }
         private async Task BotOnCallbackQueryReceived(CallbackQuery callbackQuery, CancellationToken cancellationToken)
         {
-            _logger.LogInformation("Received inline kayboard callback from:{CallbackQueryId}", callbackQuery.Id);
-            _logger.LogCritical("Received inline kayboard callback from:{CallbackQueryData}", callbackQuery.Data);
             HtmlAgilityPackClass htmlAgilityPack = new HtmlAgilityPackClass(_logger);
-            await _botClient.AnswerCallbackQueryAsync(
-                callbackQueryId: callbackQuery.Id,
-                text: $"Received {callbackQuery.Data}",
-                cancellationToken: cancellationToken);
             await _botClient.SendTextMessageAsync(
             chatId: callbackQuery.Message!.Chat.Id,
-            text: $"Пары на неделю: {htmlAgilityPack.Scrape(callbackQuery.Data)}",
+            text: $"Пары на день: {htmlAgilityPack.Scrape(callbackQuery.Data)}",
             cancellationToken: cancellationToken);
 
 

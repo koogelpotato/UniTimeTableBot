@@ -23,23 +23,40 @@ namespace UniTimeTableBot
         }
         public string Scrape(string? sequence)
         {
-            List<string> pairs = new List<string>();
+            List<Pair> test = new List<Pair>();
             string groupUrl = _websiteUrl + sequence + ".xml";
             var web = new HtmlWeb();
             var doc = web.Load(groupUrl);
             var LatestWeek = doc.DocumentNode.SelectNodes("/html/body/div[6]/div[2]/div/div[1]/span").Last().InnerText;
-            _logger.LogCritical(LatestWeek);
             var CurrentWeek = doc.DocumentNode.SelectNodes("//tr[@vl = '"+LatestWeek+"']");
-
+            var currentDay = LatestWeek;
             foreach (var pair in CurrentWeek)
             {
-                pairs.Add(pair.InnerText);
+                if(pair.SelectSingleNode("td").HasClass("head-date"))
+                {
+                    currentDay = pair.SelectSingleNode("td").InnerText;
+                }
+                else
+                {
+                    Pair newPair = new Pair
+                    {
+                        Date = currentDay,
+                        Time = pair.SelectSingleNode("td[1]").InnerText,
+                        Discipline = pair.SelectSingleNode("td[2]").InnerText,
+                        LectorsName = pair.SelectSingleNode("td[3]").InnerText,
+                        Auditorium = pair.SelectSingleNode("td[4]").InnerText,
+                    };
+                    test.Add(newPair);
+                }
+                
             }
-            string week = string.Join(" ", pairs);
-            _logger.LogCritical(week);
-            return week;
+            var dateToReturn = DateTime.Today.Date.ToShortDateString();
+            var LinqDataList = test.Where(x => x.Date.Contains(dateToReturn)).Select(f => new List<string>() { f.Date, f.Time, f.Discipline, f.LectorsName, f.Auditorium }).SelectMany(pair => pair);
+            string day = string.Join("\n", LinqDataList);
+            return day;
         }
-        
-            
+
+         
     }
+    
 }
