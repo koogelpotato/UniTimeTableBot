@@ -1,7 +1,7 @@
 ﻿namespace UniTimeTableBot
 {
-    internal interface ISraper
+    public interface ISraper
     {
-        string Scrape(string groupNumber);
+        string Scrape(string group, string date);
     }
 }
