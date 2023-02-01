@@ -17,7 +17,7 @@ namespace UniTimeTableBot
 {
     public class InlineKeyboardHandler
     {
-        private KeyboardHandlerState _state;
+        public KeyboardHandlerState _state { get;  set; }
         public void TransitionTo(KeyboardHandlerState state)
         {
             this._state = state;

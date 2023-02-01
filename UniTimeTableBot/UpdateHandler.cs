@@ -52,6 +52,7 @@ namespace UniTimeTableBot
 
                 _ => Usage(_botClient, message, cancellationToken)
             };
+            
             Message sentMessage = await action;
             _logger.LogInformation("The message was sent with id:{SentMessageId}", sentMessage.MessageId);
 
@@ -60,12 +61,11 @@ namespace UniTimeTableBot
 
         private async Task<Message> SendCourse(ITelegramBotClient botClient,Message message, CancellationToken cancellationToken)
         {
-            _keyboardHandler.TransitionTo(new SpecialisationInline(_keyboardHandler, botClient, cancellationToken));
-            Scraper scraper = new Scraper(_logger);
+            GroupScraper groupScraper = new GroupScraper();
             return await _botClient.SendTextMessageAsync(
                 chatId: message.Chat.Id,
-                text: scraper.ReturnWeek("051"),
-                replyMarkup:_keyboardHandler.SendInline(),
+                text: groupScraper.ScrapeGroups("https://sb.bsu.by/raspisanie/").ToString(),
+                replyMarkup: _keyboardHandler.SendInline(),
                 cancellationToken: cancellationToken);
 
         }

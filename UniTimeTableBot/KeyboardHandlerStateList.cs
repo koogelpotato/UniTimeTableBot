@@ -55,6 +55,7 @@ namespace UniTimeTableBot
     }
     public class SpecialisationInline : KeyboardHandlerState
     {
+        private readonly GroupScraper _groupScraper;
         public SpecialisationInline(InlineKeyboardHandler handler, ITelegramBotClient botClient, CancellationToken cancelationToken) : base(handler, botClient, cancelationToken)
         {
         }
@@ -82,7 +83,9 @@ namespace UniTimeTableBot
 
         public override void TransitionWithin()
         {
-            _inlineKeyboardHandler.TransitionTo(new NullInline(_inlineKeyboardHandler, _botClient, _cancellationToken));
+            GroupScraper _groupScraper = new GroupScraper();
+            var _groups = _groupScraper.ScrapeGroups("https://sb.bsu.by/raspisanie");
+            
         }
     }
     public class GroupInline : KeyboardHandlerState

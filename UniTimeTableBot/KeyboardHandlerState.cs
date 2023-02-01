@@ -19,7 +19,6 @@ namespace UniTimeTableBot
     {
         protected InlineKeyboardHandler _inlineKeyboardHandler;
         protected ITelegramBotClient _botClient;
-        protected Message _message;
         protected CancellationToken _cancellationToken;
         protected KeyboardHandlerState(InlineKeyboardHandler handler,ITelegramBotClient botClient,CancellationToken cancelationToken)
         {
